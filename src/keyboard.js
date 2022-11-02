@@ -11,6 +11,7 @@ for(const row of keyboard_letters){
   for(let letter of row){
     const btn=document.createElement('button');
     btn.classList.add('keyboard-item');
+    btn.setAttribute('data-key', letter);
     if(letter.length>1){
       btn.classList.add('action');
     }
