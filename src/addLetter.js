@@ -3,13 +3,22 @@ const currentWord=[];
 
 
 export const addLetter=(letter, el, wlength)=>{
+    let complete=false;
     if(currentWord.length<wlength){
         currentWord.push(letter);
         el.setAttribute('data-value', letter);
         el.innerHTML=letter.toUpperCase();
-    } 
    
-   console.log(currentWord)
+    } 
+    if(currentWord.length===5){
+        complete=true;
+    }
+
+   return complete;
+}
+
+export const getWord = ()=>{
+    return currentWord;
 }
 
 export const removeLetter=(el)=>{
