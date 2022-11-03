@@ -13,7 +13,7 @@ export const addLetter = (letter, el, wlength) => {
     el.setAttribute('data-value', letter);
     el.innerHTML = letter.toUpperCase();
   }
-  if (currentWord.length === 5) {
+  if (currentWord.length === wlength) {
     currentWordCompleted = true;//global variable
   }
   console.log('add letter ', currentWord);
