@@ -1,0 +1,21 @@
+
+
+
+
+.board-items{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.board-row{  
+    display: flex;
+   flex-direction: row;
+   gap: 5px;
+}
+.board-item{
+    min-width: 60px;
+    min-height: 60px;
+    border: 2px solid black;
+    font-size: 2rem;
+    border: 2px solid var(--darkGray);
+}
