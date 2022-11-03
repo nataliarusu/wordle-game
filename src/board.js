@@ -12,11 +12,12 @@ export const buildBoard=(rows, columns)=>{
     let id=1;
     for(let i=0; i<rows; i++){
         const boardRowEl=document.createElement('div');//row
-        boardRowEl.classList.add('board-row');
+        boardRowEl.classList.add(`board-row`, `row-${i+1}`);
+   
         for(let k=0; k<columns; k++){
             const rowItemEl=document.createElement('div');
             rowItemEl.classList.add('board-item');
-            rowItemEl.setAttribute('id', id);
+            rowItemEl.setAttribute('id', `board-item-${id}`);
             id++;
             boardRowEl.append(rowItemEl);
         }
