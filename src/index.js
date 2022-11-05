@@ -1,10 +1,11 @@
-import { renderKeyboard } from './keyboard.js';
-import { buildBoard } from './board.js';
+import { renderKeyboard } from './keyboardCreator.js';
+import { buildBoard } from './boardCreator.js';
 import { handleEnteredLetter, updateParentElement } from './onLetterInput.js';
-import { getCurrentWord } from './addORremoveLetter.js';
+import { clearCurrentWord, getCurrentWord } from './currentWordHandler.js';
+import { notInList } from './notInListRenderer.js';
 import * as wordMatcher from './wordMatcher.js';
 
-const showCustomFormBtn = document.querySelector('#show-customize-form')
+const showCustomFormBtn = document.querySelector('#show-customize-form');
 const form = document.querySelector('form');
 let MAX_ATTEMPTS;
 let MAX_W_LETTERS;
@@ -16,8 +17,6 @@ let idx; //helps to change currentParentEl depending on MAX_ATTEMPTS
 
 const boardLayout = document.querySelector('.board-layout');
 const keyboard_container = document.querySelector('.keyboard-layout');
-
-
 
 //only after board rendered we can get elements
 let rowEls;
@@ -38,20 +37,30 @@ const keyboardHandler = (ev) => {
   }
 
   if (currentWordCompleted && key === 'Enter') {
-    addWord(getCurrentWord());
-    currentParentEl.classList.remove('current');
-    //handle and check if match to today word
-    //check if game is over, riched all attempts
-    isGameOver();
-    //if not matched and if game not over
-    idx++;
-    currentParentEl = rowEls[idx];
-    currentParentEl.classList.add('current');
+    let matchedLetters; //will receive object with word received
+    const word = getCurrentWord();
+    if (wordMatcher.inDictionary(word)) {
+      matchedLetters = wordMatcher.match(word);
+      addWord(word);
+      clearCurrentWord();//only if word accepted! from addORremoveLetter.js
+      currentParentEl.classList.remove('current');
+      //handle and check if match to today word
+      //check if game is over, riched all attempts
+      isGameOver();
+      //if not matched and if game not over
+      idx++;
+      currentParentEl = rowEls[idx];
+      currentParentEl.classList.add('current');
 
-    console.log(currentParentEl)
-    updateParentElement(currentParentEl); //to onInput
+      console.log(currentParentEl);
+      updateParentElement(currentParentEl); //to onInput
 
-    //if game is not over
+      //if game is not over
+    } else {
+      notInList(boardLayout);//render alert above the board
+    }
+
+    //add if all letters matches
   } else {
     handleEnteredLetter(key); //letter or delete
   }
@@ -68,33 +77,31 @@ const isGameOver = () => {
   }*/
 };
 
-const startGame=(maxWl, maxAttempts)=>{
-  MAX_W_LETTERS=maxWl;
-  MAX_ATTEMPTS=maxAttempts;
+const startGame = (maxWl, maxAttempts) => {
+  MAX_W_LETTERS = maxWl;
+  MAX_ATTEMPTS = maxAttempts;
   idx = 0;
   const board = buildBoard(MAX_ATTEMPTS, MAX_W_LETTERS);
   boardLayout.append(board);
   renderKeyboard(keyboard_container);
-  rowEls= document.querySelectorAll('.board-row');
+  rowEls = document.querySelectorAll('.board-row');
   currentParentEl = rowEls[idx];
   updateParentElement(currentParentEl); //to onInput
   currentParentEl.classList.add('current');
   wordMatcher.getCurrentDictionary(MAX_W_LETTERS);
-}
+};
 
 const startGameHandler = (ev) => {
   ev.preventDefault();
   startGame(ev.target[0].value, ev.target[1].value);
-  
 };
-startGame(5,6);
-
+startGame(5, 6);
 
 form.addEventListener('submit', startGameHandler);
 document.addEventListener('keyup', keyboardHandler);
 keyboard_container.addEventListener('click', keyboardHandler);
 
-
-showCustomFormBtn.addEventListener('click', ()=>{//handle this feature
+showCustomFormBtn.addEventListener('click', () => {
+  //handle this feature
   document.querySelector('#custom-form').classList.add('visible');
 });

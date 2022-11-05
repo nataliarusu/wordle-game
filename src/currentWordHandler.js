@@ -26,7 +26,6 @@ export const addLetter = (letter, el, wlength) => {
 
 export const getCurrentWord = () => {
   const word =[...currentWord];
-  clearCurrentWord();
   return word;
 };
 

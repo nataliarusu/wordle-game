@@ -1,19 +1,16 @@
-import { addLetter, removeLetter } from './addORremoveLetter.js';
+import { addLetter, removeLetter } from './currentWordHandler.js';
 
 const isLetter = (value) => {
   return /^[a-z]|[A-Z]$/.test(value);
 };
-
 
 let rowItems; //items in row
 let idx = 0; //to go to row dynamicly
 let currentId; //div board-item id
 
 export const updateParentElement = (row) => {
-  console.log(row)
   idx = 0;
   rowItems = row.querySelectorAll('.board-item');
-  console.log(rowItems, 'row items in updateParentElement')
 };
 
 /**
@@ -23,7 +20,6 @@ export const updateParentElement = (row) => {
 
 export const handleEnteredLetter = (key) => {
   if (isLetter(key) && !currentWordCompleted) {
-    //currentWordCompleted is global 
     currentId = rowItems[idx].id;
     addLetter(key, document.getElementById(currentId), rowItems.length); //how many divs available in row
     idx++;
