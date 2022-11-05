@@ -1,7 +1,7 @@
 
 const keyboard_letters = [
   ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
-  ['s', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+  ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
   ['Del', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Enter']
 ];
 

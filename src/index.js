@@ -4,13 +4,14 @@ import { handleEnteredLetter, updateParentElement } from './onLetterInput.js';
 import { clearCurrentWord, getCurrentWord } from './currentWordHandler.js';
 import { notInList } from '../UI/notInListRenderer.js';
 import * as wordMatcher from './wordMatcher.js';
+import { updateBoardColours } from './updateBgColours.js';
+import { gameOver } from './gameOver.js';
 
 const showCustomFormBtn = document.querySelector('#show-customize-form');
 const form = document.querySelector('form');
 let MAX_ATTEMPTS;
 let MAX_W_LETTERS;
 const guessWords = []; //we will store arrays(user guess words) in array, so here will be 6 arrays
-let gameOver = false;
 globalThis.currentWordCompleted = false; //global available
 let currentParentEl; //current parent will be added later
 let idx; //helps to change currentParentEl depending on MAX_ATTEMPTS
@@ -23,7 +24,6 @@ let rowEls;
 
 const addWord = (word) => {
   guessWords.push(word);
-  console.log(guessWords);
 };
 
 const keyboardHandler = (ev) => {
@@ -32,7 +32,6 @@ const keyboardHandler = (ev) => {
     key = ev.key;
   } else {
     //Pointer event
-    console.log('pointer');
     key = ev.target.dataset.key;
   }
 
@@ -41,40 +40,27 @@ const keyboardHandler = (ev) => {
     const word = getCurrentWord();
     if (wordMatcher.inDictionary(word)) {
       matchedLetters = wordMatcher.match(word);
+      updateBoardColours(matchedLetters, currentParentEl);
       addWord(word);
-      clearCurrentWord();//only if word accepted! from addORremoveLetter.js
+      clearCurrentWord();
       currentParentEl.classList.remove('current');
-      //handle and check if match to today word
-      //check if game is over, riched all attempts
-      isGameOver();
-      //if not matched and if game not over
-      idx++;
-      currentParentEl = rowEls[idx];
-      currentParentEl.classList.add('current');
-
-      console.log(currentParentEl);
-      updateParentElement(currentParentEl); //to onInput
-
-      //if game is not over
+      if (wordMatcher.allCorrect(word)) {
+        gameOver('won', guessWords.length);
+        console.log(guessWords)
+      } else if (guessWords.length===MAX_ATTEMPTS) {
+        gameOver('lost', MAX_ATTEMPTS);
+      } else {
+        idx++;
+        currentParentEl = rowEls[idx];
+        currentParentEl.classList.add('current');
+        updateParentElement(currentParentEl);
+      }
     } else {
-      notInList(boardLayout);//render alert above the board
+      notInList(boardLayout); //render alert above the board
     }
-
-    //add if all letters matches
   } else {
     handleEnteredLetter(key); //letter or delete
   }
-};
-
-const isGameOver = () => {
-  //check local storage
-  //if(gameOver) if 6 words in guessWords completed
-  /*if (guessWords.length > MAX_ATTEMPTS) {
-    console.log('game is over');
-    //handle the game result here
-    //gameOver = true;
-  
-  }*/
 };
 
 const startGame = (maxWl, maxAttempts) => {

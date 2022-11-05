@@ -16,7 +16,7 @@ export const addLetter = (letter, el, wlength) => {
   if (currentWord.length === wlength) {
     currentWordCompleted = true;//global variable
   }
-  console.log('add letter ', currentWord);
+  //console.log('add letter ', currentWord);
 };
 
 /**

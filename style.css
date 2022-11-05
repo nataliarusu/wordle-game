@@ -2,36 +2,14 @@
     --green: #6aaa64;
     --darkendGreen: #538d4e;
     --yellow: #c9b458;
-    --darkendYellow: #b59f3b;
-    --spellingBeeYellow: #f7da21;
-    --lightGray: #d3d6da;
-    --gray: #86888a;/*in use*/
-    --gray-2: #dcdcdc;
-    --gray-3: #dfdfdf;
-    --gray-4: #cccccc;
-    --darkGray: #939598;/*in use*/
-    --white: #fff; /*in use*/
-    --black: #212121;/*in use*/
-    --black-2: #121212;
-    --black-3: #363636;
-    --black-4: #cfcfcf;
-    --blue-2: #477aaa;
-    --orange: #f5793a;
-    --blue: #85c0f9;
-    --outlineBlue: #2671dc;
-    --linkBlue: #477aaa;
-    --color-present: var(--yellow);
-    --color-correct: var(--green);
-    --color-absent: var(--color-tone-2);
-    --tile-text-color: var(--color-tone-7);
-    --key-text-color: var(--color-tone-1);
-    --key-evaluated-text-color: var(--color-tone-7);
-    --key-bg: var(--color-tone-4);
-    --key-bg-present: var(--color-present);
-    --key-bg-correct: var(--color-correct);
-    --key-bg-absent: var(--color-absent);
-    --modal-content-bg: var(--color-tone-7);
-    --outline-focus: var(--outlineBlue);
+    --gray: #86888a;
+    --darkGray: #939598;
+    --white: #fff;
+    --black: #212121;
+    --key-evaluated-text-color: var(--white);
+    --key-bg-present: var(--yellow);
+    --key-bg-correct: var(--green);
+    --key-bg-absent: var(--darkGray);
 }
 
 .board-layout{
@@ -69,7 +47,21 @@
 .message-container .message{
     margin: 0.5rem 1rem;
 }
+/**/
 
+/*data-state*/
+[data-state="present"]{
+    background-color: var(--key-bg-present);
+    color: var(--key-evaluated-text-color);
+}
+[data-state="correct"]{
+    background-color: var(--key-bg-correct);
+    color: var(--key-evaluated-text-color);
+}
+[data-state="absent"]{
+    background-color: var(--key-bg-absent);
+    color: var(--key-evaluated-text-color);
+}
 /**/
 .custom-wrapper{
    margin: 2rem 1rem;
