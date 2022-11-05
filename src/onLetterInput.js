@@ -10,9 +10,10 @@ let idx = 0; //to go to row dynamicly
 let currentId; //div board-item id
 
 export const updateParentElement = (row) => {
+  console.log(row)
   idx = 0;
   rowItems = row.querySelectorAll('.board-item');
-  console.log(rowItems);
+  console.log(rowItems, 'row items in updateParentElement')
 };
 
 /**

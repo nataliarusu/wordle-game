@@ -19,3 +19,12 @@
     font-size: 2rem;
     border: 2px solid var(--darkGray);
 }
+.custom-wrapper{
+   margin: 2rem 1rem;
+}
+#custom-form{
+    display: none;
+}
+.visible{
+    display: block !important;
+}

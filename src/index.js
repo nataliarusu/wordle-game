@@ -1,6 +1,6 @@
 import { renderKeyboard } from './keyboard.js';
 import { buildBoard } from './board.js';
-import { handleEnteredLetter, updateParentElement } from './onInput.js';
+import { handleEnteredLetter, updateParentElement } from './onLetterInput.js';
 import { getCurrentWord } from './addORremoveLetter.js';
 import * as wordMatcher from './wordMatcher.js';
 
