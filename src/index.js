@@ -1,8 +1,8 @@
-import { renderKeyboard } from './keyboardCreator.js';
-import { buildBoard } from './boardCreator.js';
+import { renderKeyboard } from '../UI/keyboardCreator.js';
+import { buildBoard } from '../UI/boardCreator.js';
 import { handleEnteredLetter, updateParentElement } from './onLetterInput.js';
 import { clearCurrentWord, getCurrentWord } from './currentWordHandler.js';
-import { notInList } from './notInListRenderer.js';
+import { notInList } from '../UI/notInListRenderer.js';
 import * as wordMatcher from './wordMatcher.js';
 
 const showCustomFormBtn = document.querySelector('#show-customize-form');

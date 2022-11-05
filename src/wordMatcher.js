@@ -1,4 +1,4 @@
-import { getDictionary } from './dictionaryData.js';
+import { getDictionary } from '../UI/dictionaryData.js';
 
 let currentDictionary;
 let wordOfgame;
