@@ -3,8 +3,9 @@ import { buildBoard } from './board.js';
 import { handleEnteredLetter, updateParentElement } from './onInput.js';
 import { getCurrentWord } from './addORremoveLetter.js';
 
-const MAX_ATTEMPTS = 9;
-const MAX_W_LETTERS = 8;
+const form = document.querySelector('form');
+let MAX_ATTEMPTS = 6;
+let MAX_W_LETTERS = 5;
 const guessWords = []; //we will store arrays(user guess words) in array, so here will be 6 arrays
 let gameOver = false;
 globalThis.currentWordCompleted = false; //global available
@@ -14,12 +15,10 @@ let idx; //helps to change currentParentEl depending on MAX_ATTEMPTS
 const boardLayout = document.querySelector('.board-layout');
 const keyboard_container = document.querySelector('.keyboard-layout');
 
-//build board depending on max values
-const board = buildBoard(MAX_ATTEMPTS, MAX_W_LETTERS);
-boardLayout.append(board);
+
 
 //only after board rendered we can get elements
-const rowEls = document.querySelectorAll('.board-row');
+let rowEls;
 
 const addWord = (word) => {
   guessWords.push(word);
@@ -38,20 +37,21 @@ const keyboardHandler = (ev) => {
 
   if (currentWordCompleted && key === 'Enter') {
     addWord(getCurrentWord());
+    currentParentEl.classList.remove('current');
     //handle and check if match to today word
     //check if game is over, riched all attempts
     isGameOver();
-    //if not matched, if not over
+    //if not matched and if game not over
     idx++;
     currentParentEl = rowEls[idx];
-    updateParentElement(currentParentEl); //to onInput
+    currentParentEl.classList.add('current');
 
-    console.log(idx, currentParentEl, 'after row finished');
+    console.log(currentParentEl)
+    updateParentElement(currentParentEl); //to onInput
 
     //if game is not over
   } else {
-    console.log('handle here ' + currentWordCompleted);
-    handleEnteredLetter(key);
+    handleEnteredLetter(key); //letter or delete
   }
 };
 
@@ -66,17 +66,27 @@ const isGameOver = () => {
   }*/
 };
 
-const startGame = () => {
+const startGame=(maxWl, mattempts)=>{
+  MAX_W_LETTERS=maxWl;
+  MAX_ATTEMPTS=mattempts;
   idx = 0;
+  const board = buildBoard(MAX_ATTEMPTS, MAX_W_LETTERS);
+  boardLayout.append(board);
+  renderKeyboard(keyboard_container);
+  rowEls= document.querySelectorAll('.board-row');
   currentParentEl = rowEls[idx];
   updateParentElement(currentParentEl); //to onInput
-  console.log(currentParentEl);
   currentParentEl.classList.add('current');
-  isGameOver();
-  renderKeyboard(keyboard_container);
+}
+
+const startGameHandler = (ev) => {
+  ev.preventDefault();
+  startGame(ev.target[0].value, ev.target[1].value);
+  
 };
+startGame(5,6);
 
-startGame();
 
+form.addEventListener('submit', startGameHandler);
 document.addEventListener('keyup', keyboardHandler);
 keyboard_container.addEventListener('click', keyboardHandler);
