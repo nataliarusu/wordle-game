@@ -2,10 +2,12 @@ import { renderKeyboard } from './keyboard.js';
 import { buildBoard } from './board.js';
 import { handleEnteredLetter, updateParentElement } from './onInput.js';
 import { getCurrentWord } from './addORremoveLetter.js';
+import * as wordMatcher from './wordMatcher.js';
 
+const showCustomFormBtn = document.querySelector('#show-customize-form')
 const form = document.querySelector('form');
-let MAX_ATTEMPTS = 6;
-let MAX_W_LETTERS = 5;
+let MAX_ATTEMPTS;
+let MAX_W_LETTERS;
 const guessWords = []; //we will store arrays(user guess words) in array, so here will be 6 arrays
 let gameOver = false;
 globalThis.currentWordCompleted = false; //global available
@@ -66,9 +68,9 @@ const isGameOver = () => {
   }*/
 };
 
-const startGame=(maxWl, mattempts)=>{
+const startGame=(maxWl, maxAttempts)=>{
   MAX_W_LETTERS=maxWl;
-  MAX_ATTEMPTS=mattempts;
+  MAX_ATTEMPTS=maxAttempts;
   idx = 0;
   const board = buildBoard(MAX_ATTEMPTS, MAX_W_LETTERS);
   boardLayout.append(board);
@@ -77,6 +79,7 @@ const startGame=(maxWl, mattempts)=>{
   currentParentEl = rowEls[idx];
   updateParentElement(currentParentEl); //to onInput
   currentParentEl.classList.add('current');
+  wordMatcher.getCurrentDictionary(MAX_W_LETTERS);
 }
 
 const startGameHandler = (ev) => {
@@ -90,3 +93,8 @@ startGame(5,6);
 form.addEventListener('submit', startGameHandler);
 document.addEventListener('keyup', keyboardHandler);
 keyboard_container.addEventListener('click', keyboardHandler);
+
+
+showCustomFormBtn.addEventListener('click', ()=>{//handle this feature
+  document.querySelector('#custom-form').classList.add('visible');
+});
