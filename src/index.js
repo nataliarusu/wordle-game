@@ -46,10 +46,10 @@ const keyboardHandler = (ev) => {
       clearCurrentWord();
       currentParentEl.classList.remove('current');
       if (wordMatcher.allCorrect(word)) {
-        gameOver('won', guessWords.length);
+        gameOver('won', guessWords.length, keyboardHandler);
         console.log(guessWords)
       } else if (guessWords.length===MAX_ATTEMPTS) {
-        gameOver('lost', MAX_ATTEMPTS);
+        gameOver('lost', MAX_ATTEMPTS, keyboardHandler);
       } else {
         idx++;
         currentParentEl = rowEls[idx];
@@ -76,18 +76,18 @@ const startGame = (maxWl, maxAttempts) => {
   updateParentElement(currentParentEl); //to onInput
   currentParentEl.classList.add('current');
   wordMatcher.getCurrentDictionary(MAX_W_LETTERS);
+  document.addEventListener('keyup', keyboardHandler);
+  keyboard_container.addEventListener('click', keyboardHandler);
 };
 
 const startGameHandler = (ev) => {
   ev.preventDefault();
   boardLayout.innerHTML='';
   keyboard_container.innerHTML='';
-  startGame(ev.target[0].value, ev.target[1].value);
+  startGame(Number(ev.target[0].value), Number(ev.target[1].value));
   document.querySelector('#custom-form').classList.remove('visible');
-};
+ };
 startGame(5, 6);
 
 form.addEventListener('submit', startGameHandler);
-document.addEventListener('keyup', keyboardHandler);
-keyboard_container.addEventListener('click', keyboardHandler);
 showCustomFormBtn.addEventListener('click', customizeHandler);
