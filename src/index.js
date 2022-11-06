@@ -36,7 +36,7 @@ const keyboardHandler = (ev) => {
     key = ev.target.dataset.key;
   }
 
-  if (currentWordCompleted && key === 'Enter') {
+  if (currentWordCompleted && key === 'Enter'&&key!==undefined) {
     let matchedLetters; //will receive object with word received
     const word = getCurrentWord();
     if (wordMatcher.inDictionary(word)) {
@@ -59,7 +59,7 @@ const keyboardHandler = (ev) => {
     } else {
       notInList(boardLayout); //render alert above the board
     }
-  } else {
+  } else if (key!==undefined) {
     handleEnteredLetter(key); //letter or delete
   }
 };
