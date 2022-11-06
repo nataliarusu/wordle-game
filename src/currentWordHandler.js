@@ -49,8 +49,7 @@ export const removeLetter = (el) => {
   if (currentWord.length > 0) {
     currentWord.pop();
     el.removeAttribute('data-value');
-    console.log(el);
-    el.innerHTML = 'xxx';
+    el.innerHTML = '';
   }
   if (currentWord.length <5) {
     currentWordCompleted = false;//global variable
@@ -60,6 +59,4 @@ export const removeLetter = (el) => {
     console.log('removed and length is 0')
     return;
   }
-
-  console.log(currentWord);
 };
