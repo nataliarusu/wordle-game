@@ -6,6 +6,7 @@ import { notInList } from '../UI/notInListRenderer.js';
 import * as wordMatcher from './wordMatcher.js';
 import { updateBoardColours } from './updateBgColours.js';
 import { gameOver } from './gameOver.js';
+import { customizeHandler } from './onCustomizeGame.js';
 
 const showCustomFormBtn = document.querySelector('#show-customize-form');
 const form = document.querySelector('form');
@@ -82,14 +83,11 @@ const startGameHandler = (ev) => {
   boardLayout.innerHTML='';
   keyboard_container.innerHTML='';
   startGame(ev.target[0].value, ev.target[1].value);
+  document.querySelector('#custom-form').classList.remove('visible');
 };
 startGame(5, 6);
 
 form.addEventListener('submit', startGameHandler);
 document.addEventListener('keyup', keyboardHandler);
 keyboard_container.addEventListener('click', keyboardHandler);
-
-showCustomFormBtn.addEventListener('click', () => {
-  //handle this feature
-  document.querySelector('#custom-form').classList.add('visible');
-});
+showCustomFormBtn.addEventListener('click', customizeHandler);
