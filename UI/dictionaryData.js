@@ -36,7 +36,7 @@ const validWords5 = ["rossa","jetty","wizzo","cuppa","cohoe","gurks","squad","be
 "padle","lotah","ragas","pudus","meare","graip","quack","noise","livre","pheme","chest","lined","azlon","waves","achoo","valve",
 "mawks","hydro","muxed","etude","smith","mends","pisco","cilia","algos","nenes","karma","neant","visie","volar","burro","doeth",
 "ecrus","dekes","seepy","facts","pours","gambo","mensa","swept","oafos","shock","roams","potts","piker","tings","fount","daunt",
-"battu","licit","cider","fords","palms","wheep","copes","whelm","usnea","staid","dosai","patka"];
+"battu","licit","cider","fords","palms","wheep","copes","whelm","usnea","staid","dosai","patka", "board", "staff"];
 
 const validWords6 = ["bezazz","jazzbo","pazazz","pizazz","jazzed","zizzed","zizzle","jazzer","pazzes","jizzes","zizzes","muzjik",
 "whizzy","mizzly","scuzzy","buzzed","frizzy","fuzzed","huzzah","jujube","muzzle","puzzle","whizzo","buzzer","buzzes","fezzed","fizzed",
