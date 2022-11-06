@@ -11,6 +11,36 @@
     --key-bg-correct: var(--green);
     --key-bg-absent: var(--darkGray);
 }
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+h1{
+    font-size: 1rem;
+}
+
+#custom-form{
+    position: absolute;
+    left: 50%;
+    transform: translateX( -50%);
+    top: 5rem;
+    background: white;
+    padding: 3rem;
+    border: 2px solid black;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.game{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
 
 .board-layout{
     position: relative;
@@ -48,7 +78,21 @@
     margin: 0.5rem 1rem;
 }
 /**/
-
+/*keyboard layout*/
+.keyboard-layout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+}
+.keybord-row>*{
+    margin: 0.2rem;
+}
+.keyboard-item{
+    height: 3rem;
+    width: 2rem;
+}
 /*data-state*/
 [data-state="present"]{
     background-color: var(--key-bg-present);
