@@ -2,6 +2,7 @@
     --green: #6aaa64;
     --darkendGreen: #538d4e;
     --yellow: #c9b458;
+    --dark-yellow: #f3c237;
     --gray: #86888a;
     --darkGray: #939598;
     --white: #fff;
@@ -19,22 +20,83 @@ header{
 h1{
     font-size: 1rem;
 }
+.btn{
+    appearance: none;
+    border-radius: 8px;
+    border-style: none;
+    box-shadow: rgb(39 174 96 / 15%) 0 4px 9px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 13px 20px;
+    text-align: center;
+}
+.btn:hover{
+    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+#show-customize-form{    
+    background-color: var(--dark-yellow);
+    color: #5f4a0e;    
+}
+#show-customize-form:hover {
+    background-color: #5f4a0e;
+    color: var(--white);
+}
 
-#custom-form{
+#custom-form{ 
+    position: fixed;
+    left: 0;
+    top: 0;
     z-index: 100;
+    width: 100vw;
+    height: 100%;
+}
+.custom-container{
     position: absolute;
     left: 50%;
     transform: translateX( -50%);
     top: 5rem;
     background: white;
-    padding: 3rem;
-    border: 2px solid black;
+    padding: 0.3rem;
+    border: 2px solid #c6c2c2;
+    border-radius: 5px;
 }
 form{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin: 3rem;
 }
+form select{
+    height: 2rem;
+}
+.close-btn{
+  color: rgb(147, 1, 1);  
+  border: 1px solid rgb(var(--main-purple-color));
+  border-radius: 5px;
+  float: right;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: red;
+  background: white;
+  border: 2px solid #f0f0f0;  
+
+}
+/*start btn*/
+#start-game-btn {
+    background-color: #27ae60;
+    color: var(--white);
+  }
+  
+  #start-game-btn:hover {
+    background-color: #1e8449;
+  }
+/*end start btn*/
+
 .game{
     display: flex;
     justify-content: center;

@@ -12,30 +12,34 @@
     <header>
       <h1>Wordle Game</h1>
       <div class="custom-wrapper">
-        <button id="show-customize-form">Customize game</button>
+        <button id="show-customize-form" class="btn">Customize game</button>
         <div id="custom-form">
-          <form action="">
-            <label for="word-length">Choose word length</label>
-            <select name="word-length" id="word-length">
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-            <label for="attempts">Choose attempts</label>
-            <select name="attempts" id="attempts">
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-            </select>
-            <button type="submit" id="start-game-btn">Start game</button>
-          </form>
+          <div class="custom-container">
+            <button class="close-btn">X</button>
+            <form action="">
+              <label for="word-length">Choose word length</label>
+              <select name="word-length" id="word-length">
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+              <label for="attempts">Choose attempts</label>
+              <select name="attempts" id="attempts">
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+              <button type="submit" id="start-game-btn" class="btn">
+                Start game
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </header>
     <div class="game">
-      
       <div class="board-layout"></div>
       <div class="keyboard-layout"></div>
     </div>
