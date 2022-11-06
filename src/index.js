@@ -79,6 +79,8 @@ const startGame = (maxWl, maxAttempts) => {
 
 const startGameHandler = (ev) => {
   ev.preventDefault();
+  boardLayout.innerHTML='';
+  keyboard_container.innerHTML='';
   startGame(ev.target[0].value, ev.target[1].value);
 };
 startGame(5, 6);
