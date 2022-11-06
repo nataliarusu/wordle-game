@@ -11,14 +11,26 @@
     --key-bg-present: var(--yellow);
     --key-bg-correct: var(--green);
     --key-bg-absent: var(--darkGray);
+    --dark-greenish: #79f8bf;
+    --light-greenish: #c2ffe4;
+    --customize-game: var(--light-greenish);
+    --shadow-green: #01ff9182;
+    --shadow-blue: #01b2ff82;
 }
+body{
+    box-sizing: border-box;
+    background: var(--black);
+}
+
 header{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 h1{
-    font-size: 1rem;
+    font-size: 2rem;
+    color: var(--white);
+    text-shadow: 2px 2px var(--shadow-green);
 }
 .btn{
     appearance: none;
@@ -35,12 +47,13 @@ h1{
     box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
 }
 #show-customize-form{    
-    background-color: var(--dark-yellow);
-    color: #5f4a0e;    
+    background-color: var(--black);
+    color: var(--white);
+    box-shadow: 0px 0px 4px 1px var(--shadow-green);
 }
 #show-customize-form:hover {
-    background-color: #5f4a0e;
-    color: var(--white);
+    box-shadow: 2px 2px 20px 2px var(--shadow-green);
+    color: var(--dark-greenish);
 }
 
 #custom-form{ 
@@ -50,18 +63,21 @@ h1{
     z-index: 100;
     width: 100vw;
     height: 100%;
+    background: #8c8c8c7a;
 }
-.custom-container{
+.form-wrapper{
     position: absolute;
-    left: 50%;
-    transform: translateX( -50%);
     top: 5rem;
-    background: white;
     padding: 0.3rem;
-    border-top: 2px solid #c6c2c2;
-    border-bottom: 2px solid #c6c2c2;
-
+    box-shadow: 0px 0px 200px 10px var(--shadow-blue);
     border-radius: 5px;
+    color: white;
+    background: var(--black);
+    border-radius: 5px;
+    left: 0;
+    right: 0;
+    width: 300px;
+    margin: auto;
 }
 form{
     display: flex;
@@ -74,28 +90,32 @@ form select{
 }
 .close-btn{
   color: rgb(147, 1, 1);  
-  border: 1px solid rgb(var(--main-purple-color));
+  border: 1px solid #6c5e5e;
   border-radius: 5px;
   float: right;
   width: 2rem;
   height: 2rem;
   cursor: pointer;
+  background-color: var(--black);
 }
 
 .close-btn:hover {
   color: red;
-  background: white;
-  border: 2px solid #f0f0f0;  
+  background: black;
+  border: 1px solid #f0f0f0;  
 
 }
 /*start btn*/
 #start-game-btn {
-    background-color: #27ae60;
+    margin-top: 2rem;
+    width: 100%;
+    background-color: #01b2ff82;
     color: var(--white);
+    box-shadow: inset 1px 1px 20px 2px var(--shadow-blue);
   }
   
   #start-game-btn:hover {
-    background-color: #1e8449;
+    background-color: #03638dbf;
   }
 /*end start btn*/
 
@@ -105,6 +125,7 @@ form select{
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    color: var(--light-greenish);
 }
 
 .board-layout{
@@ -126,7 +147,12 @@ form select{
     min-height: 60px;
     border: 2px solid black;
     font-size: 2rem;
-    border: 2px solid var(--darkGray);
+    border: 1px solid var(--darkGray);
+    border-radius: 3px;
+    box-shadow: inset 0px 0px 4px 1px var(--shadow-blue);
+}
+.current >*{
+    box-shadow: inset 0px 0px 4px 1px var(--shadow-green);
 }
 .message-container{
     position: absolute;
@@ -179,10 +205,11 @@ form select{
     display: none;
 }
 .visible{
-    display: block !important;
+    display: block !important;   
+}
+.animated{
     animation: fade-slide-in 0.5s ease-out forwards;
 }
-
 @keyframes fade-slide-in {
     from {
       transform: translateY(-5rem);
