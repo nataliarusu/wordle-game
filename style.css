@@ -58,7 +58,9 @@ h1{
     top: 5rem;
     background: white;
     padding: 0.3rem;
-    border: 2px solid #c6c2c2;
+    border-top: 2px solid #c6c2c2;
+    border-bottom: 2px solid #c6c2c2;
+
     border-radius: 5px;
 }
 form{
@@ -178,4 +180,14 @@ form select{
 }
 .visible{
     display: block !important;
+    animation: fade-slide-in 0.5s ease-out forwards;
 }
+
+@keyframes fade-slide-in {
+    from {
+      transform: translateY(-5rem);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
