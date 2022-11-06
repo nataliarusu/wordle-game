@@ -6,7 +6,7 @@ let wordOfgame;
 export const getCurrentDictionary = (wordLength) => {
   currentDictionary = getDictionary(wordLength);
   console.log(currentDictionary);
-  wordOfgame = currentDictionary[2]; //hardcoded here, should give random
+  wordOfgame = currentDictionary[Math.floor(Math.random() * currentDictionary.length)];
   console.log(wordOfgame);
 };
 
