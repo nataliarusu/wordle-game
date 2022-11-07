@@ -5,10 +5,9 @@ export const gameOver=(state, attempts, keyboardHandler, word, startGame, WLengt
     let messageEl;
 
     if(state ==='won'){
-        console.log('you won in attepmts ', attempts)
-        messageEl = createMessage(`you ${state}`, attempts)
+        messageEl = createMessage(`you ${state}!`, attempts)
     } else if(state==='lost'){
-        messageEl = createMessage(`you ${state}`, attempts, word)        
+        messageEl = createMessage(`you ${state}!`, attempts, word)        
     }
     resultEl.append(messageEl);
     resultEl.classList.add('visible');
