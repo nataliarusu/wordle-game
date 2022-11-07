@@ -12,11 +12,11 @@ export const gameOver=(state, attempts, keyboardHandler, word, startGame, WLengt
     }
     resultEl.append(messageEl);
     resultEl.classList.add('visible');
-    messageEl.classList.add('.animate-up')//shuld implement
+    messageEl.classList.add('animate-up')
     resultEl.querySelector('button').addEventListener('click',()=>{
         resultEl.innerHTML='';
         resultEl.classList.remove('visible');
-        messageEl.classList.remove('.animate-up')//shuld implement
+        messageEl.classList.remove('animate-up')
         startGame(WLength, MAttempts);
     })
     document.removeEventListener('keyup', keyboardHandler);

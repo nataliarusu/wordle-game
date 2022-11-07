@@ -147,9 +147,9 @@ form select {
   gap: 5px;
 }
 .board-item {
-  min-width: 60px;
-  min-height: 60px;
-  border: 2px solid black;
+  min-width: 40px;
+  min-height: 40px;
+  text-align: center;
   font-size: 2rem;
   border: 1px solid var(--darkGray);
   border-radius: 3px;
@@ -211,12 +211,7 @@ form select {
 #custom-form {
   display: none;
 }
-.visible {
-  display: block !important;
-}
-.animated {
-  animation: fade-slide-in 0.5s ease-out forwards;
-}
+
 .result {
   display: none;
   position: fixed;
@@ -226,7 +221,6 @@ form select {
 }
 .result-message {
   width: 300px;
-  height: 200px;
   background: white;
   position: absolute;
   top: 60%;
@@ -257,9 +251,28 @@ form select {
   color: var(--white);
   box-shadow: inset 1px 1px 20px 2px var(--shadow-blue);
 }
+.visible {
+  display: block !important;
+}
+.animated {
+  animation: fade-slide-in 0.5s ease-out forwards;
+}
+.animate-up {
+  animation: fade-slide-up 1s ease-out forwards;
+}
+
 @keyframes fade-slide-in {
   from {
     transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-slide-up {
+  from {
+    transform: translateY(120%);
   }
   to {
     transform: translateY(0);
