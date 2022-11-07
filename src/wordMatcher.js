@@ -38,3 +38,7 @@ export const match = (word) => {
 export const allCorrect = (word) => {
   return wordOfgame === word.join('');
 };
+
+export const getWordOfgame = ()=>{
+  return wordOfgame;
+}

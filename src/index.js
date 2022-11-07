@@ -36,7 +36,7 @@ const keyboardHandler = (ev) => {
     key = ev.target.dataset.key;
   }
 
-  if (currentWordCompleted && key === 'Enter'&&key!==undefined) {
+  if (currentWordCompleted && key === 'Enter' && key !== undefined) {
     let matchedLetters; //will receive object with word received
     const word = getCurrentWord();
     if (wordMatcher.inDictionary(word)) {
@@ -46,10 +46,28 @@ const keyboardHandler = (ev) => {
       clearCurrentWord();
       currentParentEl.classList.remove('current');
       if (wordMatcher.allCorrect(word)) {
-        gameOver('won', guessWords.length, keyboardHandler);
-        console.log(guessWords)
-      } else if (guessWords.length===MAX_ATTEMPTS) {
-        gameOver('lost', MAX_ATTEMPTS, keyboardHandler);
+        gameOver(
+          'won',
+          guessWords.length,
+          keyboardHandler,
+          wordMatcher.getWordOfgame(),
+          startGame,
+          MAX_W_LETTERS,
+          MAX_ATTEMPTS
+        );
+        guessWords.length=0;//empty
+        console.log(guessWords);
+      } else if (guessWords.length === MAX_ATTEMPTS) {
+        gameOver(
+          'lost',
+          MAX_ATTEMPTS,
+          keyboardHandler,
+          wordMatcher.getWordOfgame(),
+          startGame,
+          MAX_W_LETTERS,
+          MAX_ATTEMPTS
+        );
+        guessWords.length=0;//empty
       } else {
         idx++;
         currentParentEl = rowEls[idx];
@@ -59,12 +77,14 @@ const keyboardHandler = (ev) => {
     } else {
       notInList(boardLayout); //render alert above the board
     }
-  } else if (key!==undefined) {
+  } else if (key !== undefined) {
     handleEnteredLetter(key); //letter or delete
   }
 };
 
 const startGame = (maxWl, maxAttempts) => {
+  boardLayout.innerHTML = '';
+  keyboard_container.innerHTML = '';
   MAX_W_LETTERS = maxWl;
   MAX_ATTEMPTS = maxAttempts;
   idx = 0;
@@ -82,11 +102,9 @@ const startGame = (maxWl, maxAttempts) => {
 
 const startGameHandler = (ev) => {
   ev.preventDefault();
-  boardLayout.innerHTML='';
-  keyboard_container.innerHTML='';
   startGame(Number(ev.target[0].value), Number(ev.target[1].value));
   document.querySelector('#custom-form').classList.remove('visible');
- };
+};
 startGame(5, 6);
 
 form.addEventListener('submit', startGameHandler);
