@@ -56,7 +56,6 @@ export const removeLetter = (el) => {
   }
   if (currentWord.length ===0) {
     currentWordCompleted = false;//global variable
-    console.log('removed and length is 0')
     return;
   }
 };
